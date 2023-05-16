@@ -136,44 +136,7 @@ public class ProjectCode252 {
         event.updateQuantity(quaTemp);
 
     }
-
-    /* int quaTemp;
-
-        switch (select) {
-            case "B":
-                quaTemp = askQuantity(in);
-                BQua += quaTemp;
-                B -= quaTemp;
-                break;
-            case "P":
-                quaTemp = askQuantity(in);
-                PQua += quaTemp;
-                P -= quaTemp;
-                break;
-            case "D":
-                quaTemp = askQuantity(in);
-                DQua += quaTemp;
-                Da -= quaTemp;
-                break;
-            case "G":
-                quaTemp = askQuantity(in);
-                GQua += quaTemp;
-                G -= quaTemp;
-                break;
-            case "S":
-                quaTemp = askQuantity(in);
-                SQua += quaTemp;
-                S -= quaTemp;
-                break;
-            case "E":
-                if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
-                    System.out.println("Nothing Selected. See you again.");
-                    System.exit(0);
-                }
-            default:
-                System.out.println("Wrong selection!");
-        }
-    }*/
+    
     private static int askQuantity(Scanner in) {
         System.out.print("Quantity: ");
         return in.nextInt();
