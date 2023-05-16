@@ -1,10 +1,10 @@
+package MainCode;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projectcode.pkg252;
-
 /**
  *
  * @author asmaabdullah
@@ -15,12 +15,21 @@ import java.util.regex.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
+// Factory
+import Factory.EventFactory;
+import Factory.Event;
+
+//Bridge
+import Bridge.Ticket;
+import Bridge.STLATicket;
+import Bridge.STLATicketImplementor;
+
 public class ProjectCode252 {
 
-    static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
-    static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
-    static int B = 12, P = 20, Da = 5, S = 20, G = 25;
-    static Scanner input = new Scanner(System.in);
+    public static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+    public static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
+    public static int B = 12, P = 20, Da = 5, S = 20, G = 25;
+    public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -34,6 +43,10 @@ public class ProjectCode252 {
             String select = input.next().toUpperCase();
 
             if (select.equalsIgnoreCase("E")) {
+                if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
+                    System.out.println("Nothing Selected. See you again.");
+                    System.exit(0);
+                }
                 flag = false;
             } else {
                 selectEvent(select, in);
@@ -50,7 +63,7 @@ public class ProjectCode252 {
 
         while (!isCorrectMobile(mobileNum)) {
             System.out.print("Enter your Mobile Number (must start with 05): ");
-            mobileNum = in.next();
+            mobileNum = input.next();
         }
 
         String userEmail = "";
@@ -136,7 +149,7 @@ public class ProjectCode252 {
         event.updateQuantity(quaTemp);
 
     }
-    
+
     private static int askQuantity(Scanner in) {
         System.out.print("Quantity: ");
         return in.nextInt();
@@ -203,17 +216,8 @@ public class ProjectCode252 {
     }
 
     public static String generateTicket(String date) {
-        String ticket = "";
-        String dateNo = date.substring(0, 10);
-        String day = date.substring(10);
-
-        ticket += "\n\n\t\tSTLA WORLD\n";
-        ticket += "------------------TICKET---------------------\n";
-        ticket += "       Date: " + dateNo + "   | " + day;
-        ticket += "\n\t     4:00pm - 11:30pm";
-        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
-        ticket += "\n---------------------------------------------\n\n";
-        return ticket;
+        Ticket ticket = new STLATicket(new STLATicketImplementor());
+        return ticket.generateTicket(date);
     }
 
 }

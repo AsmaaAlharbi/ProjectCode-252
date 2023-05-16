@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projectcode.pkg252;
+package Factory;
+
+import MainCode.ProjectCode252;
 
 /**
  *
  * @author asmaabdullah
  */
-public class PirateShip implements Event {
+public class BumperCars implements Event {
 
-    private static final int PirateShip_Price = 15;
+    private static final int BumperCars_Price = 20;
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.PQua += quantity;
-        ProjectCode252.P -= quantity;
+        ProjectCode252.BQua += quantity;
+        ProjectCode252.B -= quantity;
     }
 
     @Override
     public int getPrice() {
-        return PirateShip_Price;
+        return BumperCars_Price;
     }
 
 }
