@@ -23,8 +23,12 @@ public class ProjectCode252 {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        
+        EventsFactory gamesFactory = new EventsFactory();
+        Events ice = gamesFactory.GetGames("IceSkating");
+        ice.Price();
 
-        boolean flag = true;
+        /*boolean flag = true;
         Scanner in = new Scanner(System.in);
         while (flag) {
 
@@ -61,8 +65,7 @@ public class ProjectCode252 {
 
         calculatePrice();
         System.out.println(generateTicket(date));
-        System.out.println(invoice(userName));
-
+        System.out.println(invoice(userName));*/
     }
 
     public static String displayWelcomeMessage() {
