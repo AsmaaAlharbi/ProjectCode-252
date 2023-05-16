@@ -9,21 +9,19 @@ package projectcode.pkg252;
  *
  * @author asmaabdullah
  */
-public class BumperCars implements Events{
+public class BumperCars implements Event {
+
+    private static final int BumperCars_Price = 20;
 
     @Override
-    public void Price() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateQuantity(int quantity) {
+        ProjectCode252.BQua += quantity;
+        ProjectCode252.B -= quantity;
     }
 
     @Override
-    public void TicketLeft() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getPrice() {
+        return BumperCars_Price;
     }
 
-    @Override
-    public void Quantity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

@@ -9,21 +9,19 @@ package projectcode.pkg252;
  *
  * @author asmaabdullah
  */
-public class PirateShip implements Events{
+public class PirateShip implements Event {
+
+    private static final int PirateShip_Price = 15;
 
     @Override
-    public void Price() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateQuantity(int quantity) {
+        ProjectCode252.PQua += quantity;
+        ProjectCode252.P -= quantity;
     }
 
     @Override
-    public void TicketLeft() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getPrice() {
+        return PirateShip_Price;
     }
 
-    @Override
-    public void Quantity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

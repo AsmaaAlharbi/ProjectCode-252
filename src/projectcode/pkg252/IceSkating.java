@@ -9,20 +9,20 @@ package projectcode.pkg252;
  *
  * @author asmaabdullah
  */
-public class IceSkating implements Events {
+public class IceSkating implements Event {
+
+    private static final int IceSkating_Price = 30;
 
     @Override
-    public void Price() {
-        System.out.print("inside Price IceSkating\n");
+    public void updateQuantity(int quantity) {
+        ProjectCode252.SQua += quantity;
+        ProjectCode252.S -= quantity;
     }
 
     @Override
-    public void TicketLeft() {
-    }
-
-    @Override
-    public void Quantity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getPrice() {
+        return IceSkating_Price;
     }
 
 }
+

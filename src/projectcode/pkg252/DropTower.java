@@ -9,21 +9,19 @@ package projectcode.pkg252;
  *
  * @author asmaabdullah
  */
-public class DropTower implements Events {
+public class DropTower implements Event {
+
+    private static final int DropTower_Price = 25;
 
     @Override
-    public void Price() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateQuantity(int quantity) {
+        ProjectCode252.DQua += quantity;
+        ProjectCode252.Da -= quantity;
     }
 
     @Override
-    public void TicketLeft() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void Quantity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getPrice() {
+        return DropTower_Price;
     }
 
 }

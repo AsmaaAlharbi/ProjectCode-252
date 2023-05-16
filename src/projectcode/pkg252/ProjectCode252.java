@@ -23,12 +23,8 @@ public class ProjectCode252 {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
-        EventsFactory gamesFactory = new EventsFactory();
-        Events ice = gamesFactory.GetGames("IceSkating");
-        ice.Price();
 
-        /*boolean flag = true;
+        boolean flag = true;
         Scanner in = new Scanner(System.in);
         while (flag) {
 
@@ -65,7 +61,7 @@ public class ProjectCode252 {
 
         calculatePrice();
         System.out.println(generateTicket(date));
-        System.out.println(invoice(userName));*/
+        System.out.println(invoice(userName));
     }
 
     public static String displayWelcomeMessage() {
@@ -127,7 +123,21 @@ public class ProjectCode252 {
     }
 
     public static void selectEvent(String select, Scanner in) {
+        EventFactory eventFactory = new EventFactory();
+        Event event = eventFactory.createEvent(select);
         int quaTemp;
+
+        if (event == null) {
+            System.out.println("Wrong selection!");
+            return;
+        }
+
+        quaTemp = askQuantity(in);
+        event.updateQuantity(quaTemp);
+
+    }
+
+    /* int quaTemp;
 
         switch (select) {
             case "B":
@@ -163,8 +173,7 @@ public class ProjectCode252 {
             default:
                 System.out.println("Wrong selection!");
         }
-    }
-
+    }*/
     private static int askQuantity(Scanner in) {
         System.out.print("Quantity: ");
         return in.nextInt();

@@ -9,21 +9,19 @@ package projectcode.pkg252;
  *
  * @author asmaabdullah
  */
-public class GiantWheel implements Events {
+public class GiantWheel implements Event {
+
+    private static final int GiantWheel_Price = 30;
 
     @Override
-    public void Price() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateQuantity(int quantity) {
+        ProjectCode252.GQua += quantity;
+        ProjectCode252.G -= quantity;
     }
 
     @Override
-    public void TicketLeft() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void Quantity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getPrice() {
+        return GiantWheel_Price;
     }
 
 }
