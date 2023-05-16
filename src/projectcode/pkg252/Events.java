@@ -14,5 +14,6 @@ public interface Events {
     
     public abstract void Price();
     public abstract void TicketLeft();
+    public abstract void Quantity();
     
 }

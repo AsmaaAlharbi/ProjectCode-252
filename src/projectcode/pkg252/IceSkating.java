@@ -20,4 +20,9 @@ public class IceSkating implements Events {
     public void TicketLeft() {
     }
 
+    @Override
+    public void Quantity() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
