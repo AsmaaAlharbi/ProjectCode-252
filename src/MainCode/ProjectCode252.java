@@ -20,6 +20,10 @@ import java.util.regex.*;
 import Factory.EventFactory;
 import Factory.Event;
 
+// Builder
+import Builder.InvoiceBuilder;
+import Builder.InvoiceDirector;
+
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
