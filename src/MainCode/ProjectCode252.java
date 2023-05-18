@@ -9,9 +9,6 @@ package MainCode;
  *
  * @author asmaabdullah
  */
-import Builder.InvoiceBuilder;
-import Builder.InvoiceDirector;
-import Builder.Invoice;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
@@ -23,6 +20,7 @@ import Factory.Event;
 // Builder
 import Builder.InvoiceBuilder;
 import Builder.InvoiceDirector;
+import Builder.Invoice;
 
 public class ProjectCode252 {
 
