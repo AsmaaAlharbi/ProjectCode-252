@@ -13,7 +13,7 @@ import MainCode.ProjectCode252;
  */
 public class BumperCars implements Event {
 
-    private static final int BumperCars_Price = 20;
+    private  final int BumperCars_Price = 20;
 
     @Override
     public void updateQuantity(int quantity) {

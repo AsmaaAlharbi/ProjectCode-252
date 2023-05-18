@@ -13,7 +13,7 @@ import MainCode.ProjectCode252;
  */
 public class PirateShip implements Event {
 
-    private static final int PirateShip_Price = 15;
+    private  final int PirateShip_Price = 15;
 
     @Override
     public void updateQuantity(int quantity) {

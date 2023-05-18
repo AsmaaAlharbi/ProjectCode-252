@@ -9,11 +9,12 @@ package MainCode;
  *
  * @author asmaabdullah
  */
+import Builder.InvoiceBuilder;
+import Builder.InvoiceDirector;
+import Builder.Invoice;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 
 // Factory
 import Factory.EventFactory;
@@ -26,7 +27,7 @@ import Bridge.STLATicketImplementor;
 
 public class ProjectCode252 {
 
-    public static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+    static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
     public static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
     public static int B = 12, P = 20, Da = 5, S = 20, G = 25;
     public static Scanner input = new Scanner(System.in);
@@ -72,9 +73,9 @@ public class ProjectCode252 {
             userEmail = in.next();
         }
 
-        calculatePrice();
         System.out.println(generateTicket(date));
-        System.out.println(invoice(userName));
+        invoice(userName);
+
     }
 
     public static String displayWelcomeMessage() {
@@ -155,63 +156,21 @@ public class ProjectCode252 {
         return in.nextInt();
     }
 
-    public static void calculatePrice() {
+    public static void invoice(String userName) {
 
-        int itemTotal;
+        InvoiceBuilder invoiceBuilder = new InvoiceBuilder();
+        InvoiceDirector invoiceDirector = new InvoiceDirector(invoiceBuilder);
 
-        itemTotal = BQua * BPrice;
-        total += itemTotal;
+        invoiceDirector.constructInvoice(userName, new String[][]{
+            {"Bumper cars", Integer.toString(BQua), Integer.toString(BQua * BPrice)},
+            {"Pirate Ship", Integer.toString(PQua), Integer.toString(PQua * PPrice)},
+            {"Ice skating", Integer.toString(SQua), Integer.toString(SQua * SPrice)},
+            {"Giant Wheel", Integer.toString(GQua), Integer.toString(GQua * GPrice)},
+            {"Drop tower", Integer.toString(DQua), Integer.toString(DQua * DPrice)}
+        });
 
-        itemTotal = PQua * PPrice;
-        total += itemTotal;
-
-        itemTotal = SQua * SPrice;
-        total += itemTotal;
-
-        itemTotal = GQua * GPrice;
-        total += itemTotal;
-
-        itemTotal = DQua * DPrice;
-        total += itemTotal;
-
-    }
-
-    public static String invoice(String userName) {
-
-        String invoicePrint = "";
-
-        invoicePrint += "\n\n****************** INVOICE ********************";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        invoicePrint += "\nDate: " + dtf.format(now);
-        invoicePrint += "\nBill to: " + userName + "\n";
-
-        invoicePrint += "\nItem              Quantity          Item Total";
-
-        if (BQua != 0) {
-            invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
-        }
-        if (PQua != 0) {
-            invoicePrint += "\nPirate Ship          " + PQua + "                 " + PQua * PPrice;
-        }
-        if (SQua != 0) {
-            invoicePrint += "\nIce skating          " + SQua + "                 " + SQua * SPrice;
-        }
-        if (GQua != 0) {
-            invoicePrint += "\nGiant Wheel          " + GQua + "                 " + GQua * GPrice;
-        }
-        if (DQua != 0) {
-            invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
-        }
-
-        invoicePrint += "\n\nSubtotal: " + total;
-        double tax = total * 0.15;
-        invoicePrint += "\nTax: " + tax;
-        double totalPrice = total + tax;
-        invoicePrint += "\nTotal Price: " + totalPrice;
-        invoicePrint += "\n***********************************************";
-        invoicePrint += "\n";
-        return invoicePrint;
+        Invoice invoice = invoiceBuilder.getInvoice();
+        System.out.println(invoice);
 
     }
 

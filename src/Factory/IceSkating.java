@@ -13,7 +13,7 @@ import MainCode.ProjectCode252;
  */
 public class IceSkating implements Event {
 
-    private static final int IceSkating_Price = 30;
+    private  final int IceSkating_Price = 30;
 
     @Override
     public void updateQuantity(int quantity) {

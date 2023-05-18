@@ -14,7 +14,7 @@ import MainCode.ProjectCode252;
 
 public class DropTower implements Event {
 
-    private static final int DropTower_Price = 25;
+    private  final int DropTower_Price = 25;
 
     @Override
     public void updateQuantity(int quantity) {

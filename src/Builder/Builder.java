@@ -2,15 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Bridge;
+package Builder;
 
 /**
  *
  * @author asmaabdullah
  */
+interface Builder {
 
+    void setUserName(String userName);
 
-//Create an interface TicketImplementor
-public interface TicketImplementor {
-    String generateTicketDetails(String date);
-} 
+    void addItem(String itemName, int quantity, double itemTotal);
+
+    void calculateTotal();
+}

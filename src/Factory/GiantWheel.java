@@ -13,7 +13,7 @@ import MainCode.ProjectCode252;
  */
 public class GiantWheel implements Event {
 
-    private static final int GiantWheel_Price = 30;
+    private  final int GiantWheel_Price = 30;
 
     @Override
     public void updateQuantity(int quantity) {
