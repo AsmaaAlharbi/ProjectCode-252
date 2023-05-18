@@ -10,9 +10,11 @@ package Builder;
  */
 interface Builder {
 
-    void setUserName(String userName);
+    void BuildUserName(String userName);
 
-    void addItem(String itemName, int quantity, double itemTotal);
+    void BuildItem(String itemName, int quantity, double itemTotal);
 
-    void calculateTotal();
+    void BuildTotal();
+
+    Invoice getInvoice();
 }

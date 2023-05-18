@@ -17,10 +17,10 @@ public class InvoiceDirector {
     }
 
     public void constructInvoice(String userName, String[][] items) {
-        builder.setUserName(userName);
+        builder.BuildUserName(userName);
         for (String[] item : items) {
-            builder.addItem(item[0], Integer.parseInt(item[1]), Double.parseDouble(item[2]));
+            builder.BuildItem(item[0], Integer.parseInt(item[1]), Double.parseDouble(item[2]));
         }
-        builder.calculateTotal();
+        builder.BuildTotal();
     }
 }

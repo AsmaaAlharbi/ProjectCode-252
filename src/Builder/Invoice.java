@@ -48,6 +48,30 @@ public class Invoice {
         this.date = date;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getItems() {
+        return items;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "\n\n****************** INVOICE ********************"

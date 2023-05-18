@@ -20,11 +20,6 @@ import java.util.regex.*;
 import Factory.EventFactory;
 import Factory.Event;
 
-//Bridge
-import Bridge.Ticket;
-import Bridge.STLATicket;
-import Bridge.STLATicketImplementor;
-
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
@@ -170,13 +165,21 @@ public class ProjectCode252 {
         });
 
         Invoice invoice = invoiceBuilder.getInvoice();
-        System.out.println(invoice);
-
+        System.out.println(invoice.toString());
     }
 
     public static String generateTicket(String date) {
-        Ticket ticket = new STLATicket(new STLATicketImplementor());
-        return ticket.generateTicket(date);
+        String ticket = "";
+        String dateNo = date.substring(0, 10);
+        String day = date.substring(10);
+
+        ticket += "\n\n\t\tSTLA WORLD\n";
+        ticket += "------------------TICKET---------------------\n";
+        ticket += " Date: " + dateNo + " | " + day;
+        ticket += "\n\t 4:00pm - 11:30pm";
+        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
+        ticket += "\n---------------------------------------------\n\n";
+        return ticket;
     }
 
 }

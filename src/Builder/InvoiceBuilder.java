@@ -21,12 +21,12 @@ public class InvoiceBuilder implements Builder {
     }
 
     @Override
-    public void setUserName(String userName) {
+    public void BuildUserName(String userName) {
         invoice.setUserName(userName);
     }
 
     @Override
-    public void addItem(String itemName, int quantity, double itemTotal) {
+    public void BuildItem(String itemName, int quantity, double itemTotal) {
 
         if (quantity != 0) {
             items.append("\n" + itemName + "          " + quantity + "                 " + itemTotal);
@@ -35,7 +35,7 @@ public class InvoiceBuilder implements Builder {
     }
 
     @Override
-    public void calculateTotal() {
+    public void BuildTotal() {
         double tax = subtotal * 0.15;
         double total = subtotal + tax;
 
@@ -45,6 +45,7 @@ public class InvoiceBuilder implements Builder {
         invoice.setTotal(total);
     }
 
+    @Override
     public Invoice getInvoice() {
         return invoice;
     }
