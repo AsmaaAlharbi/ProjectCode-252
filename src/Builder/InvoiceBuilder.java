@@ -28,6 +28,9 @@ public class InvoiceBuilder implements Builder {
     @Override
     public void BuildItem(String itemName, int quantity, double itemTotal) {
 
+        // check if quantity(num of tickets chosen by user) is zero or not 
+        // because we will add to the invoice only the events that the user selected 
+        
         if (quantity != 0) {
             items.append("\n" + itemName + "          " + quantity + "                 " + itemTotal);
             subtotal += itemTotal;

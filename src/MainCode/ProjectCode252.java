@@ -159,11 +159,11 @@ public class ProjectCode252 {
         InvoiceDirector invoiceDirector = new InvoiceDirector(invoiceBuilder);
 
         invoiceDirector.constructInvoice(userName, new String[][]{
-            {"Bumper cars", Integer.toString(BQua), Integer.toString(BQua * BPrice)},
-            {"Pirate Ship", Integer.toString(PQua), Integer.toString(PQua * PPrice)},
-            {"Ice skating", Integer.toString(SQua), Integer.toString(SQua * SPrice)},
-            {"Giant Wheel", Integer.toString(GQua), Integer.toString(GQua * GPrice)},
-            {"Drop tower", Integer.toString(DQua), Integer.toString(DQua * DPrice)}
+            {"Bumper cars", Integer.toString(BQua), Double.toString(BQua * BPrice)},
+            {"Pirate Ship", Integer.toString(PQua), Double.toString(PQua * PPrice)},
+            {"Ice skating", Integer.toString(SQua), Double.toString(SQua * SPrice)},
+            {"Giant Wheel", Integer.toString(GQua), Double.toString(GQua * GPrice)},
+            {"Drop tower", Integer.toString(DQua), Double.toString(DQua * DPrice)}
         });
 
         Invoice invoice = invoiceBuilder.getInvoice();
