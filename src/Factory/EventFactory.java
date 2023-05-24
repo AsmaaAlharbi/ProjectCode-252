@@ -12,6 +12,7 @@ package Factory;
 public class EventFactory {
 
     public Event createEvent(String eventType) {
+        
         switch (eventType) {
             case "B":
                 return new BumperCars();

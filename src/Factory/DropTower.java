@@ -5,16 +5,32 @@
  */
 package Factory;
 
+import Bridge.Day;
 import MainCode.ProjectCode252;
+
 
 /**
  *
  * @author asmaabdullah
  */
+public class DropTower extends Event {
 
-public class DropTower implements Event {
+    private final int DropTower_Price = 25;
 
-    private  final int DropTower_Price = 25;
+    public DropTower() {
+
+    }
+
+    @Override
+    public void chosenDay(Day day) {
+        this.day = day;
+
+    }
+
+    @Override
+    public void getDay() {
+        day.chosenDay();
+    }
 
     @Override
     public void updateQuantity(int quantity) {

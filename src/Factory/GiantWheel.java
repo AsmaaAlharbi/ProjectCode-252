@@ -5,15 +5,31 @@
  */
 package Factory;
 
+import Bridge.Day;
 import MainCode.ProjectCode252;
 
 /**
  *
  * @author asmaabdullah
  */
-public class GiantWheel implements Event {
+public class GiantWheel extends Event {
 
-    private  final int GiantWheel_Price = 30;
+    private final int GiantWheel_Price = 30;
+
+    public GiantWheel() {
+
+    }
+
+    @Override
+    public void chosenDay(Day day) {
+        this.day = day;
+
+    }
+
+    @Override
+    public void getDay() {
+        day.chosenDay();
+    }
 
     @Override
     public void updateQuantity(int quantity) {

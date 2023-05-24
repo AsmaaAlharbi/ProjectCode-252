@@ -5,15 +5,29 @@
  */
 package Factory;
 
+import Bridge.Day;
 import MainCode.ProjectCode252;
 
 /**
  *
  * @author asmaabdullah
  */
-public class BumperCars implements Event {
+public class BumperCars extends Event {
 
-    private  final int BumperCars_Price = 20;
+    private final int BumperCars_Price = 20;
+
+    public BumperCars() {
+
+    }
+
+    @Override
+    public void chosenDay(Day day) {
+        this.day = day;
+    }
+    @Override
+    public void getDay() {
+        day.chosenDay();
+    }
 
     @Override
     public void updateQuantity(int quantity) {

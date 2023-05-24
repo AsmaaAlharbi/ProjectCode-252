@@ -5,15 +5,30 @@
  */
 package Factory;
 
+import Bridge.Day;
 import MainCode.ProjectCode252;
 
 /**
  *
  * @author asmaabdullah
  */
-public class PirateShip implements Event {
+public class PirateShip extends Event {
 
-    private  final int PirateShip_Price = 15;
+    private final int PirateShip_Price = 15;
+
+    public PirateShip() {
+
+    }
+
+    @Override
+    public void chosenDay(Day day) {
+        this.day = day;
+    }
+
+    @Override
+    public void getDay() {
+        day.chosenDay();
+    }
 
     @Override
     public void updateQuantity(int quantity) {

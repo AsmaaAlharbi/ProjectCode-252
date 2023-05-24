@@ -12,15 +12,21 @@ package MainCode;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 // Factory
 import Factory.EventFactory;
 import Factory.Event;
 
-// Builder
-import Builder.InvoiceBuilder;
-import Builder.InvoiceDirector;
-import Builder.Invoice;
+// Bridge
+import Bridge.Sunday;
+import Bridge.Monday;
+import Bridge.Tuesday;
+import Bridge.Wednesday;
+import Bridge.Thursday;
+import Bridge.Friday;
+import Bridge.Saturday;
 
 public class ProjectCode252 {
 
@@ -52,8 +58,6 @@ public class ProjectCode252 {
 
         }
 
-        String date = selectDate(in);
-
         System.out.print("Enter your name: ");
         String userName = in.nextLine();
 
@@ -70,8 +74,9 @@ public class ProjectCode252 {
             userEmail = in.next();
         }
 
-        System.out.println(generateTicket(date));
-        invoice(userName);
+        calculatePrice();
+        //System.out.println(generateTicket(date));
+        System.out.println(invoice(userName));
 
     }
 
@@ -106,31 +111,29 @@ public class ProjectCode252 {
         return matcher.matches();
     }
 
-    public static String selectDate(Scanner in) {
+    public static int selectDate(Scanner in) {
 
         ArrayList<String> dateList = new ArrayList<>();
-        dateList.add("01/03/2023  Wednesday ");
-        dateList.add("02/03/2023  Thursday ");
-        dateList.add("03/03/2023  Friday ");
-        dateList.add("04/03/2023  Saturday ");
-        dateList.add("05/03/2023  Sunday ");
-        dateList.add("06/03/2023  Monday ");
-        dateList.add("07/03/2023  Tuesday ");
+        dateList.add("18/06/2023  Sunday");
+        dateList.add("19/06/2023  Monday");
+        dateList.add("20/06/2023  Tuesday");
+        dateList.add("21/06/2023  Wednesday");
+        dateList.add("22/06/2023  Thursday");
+        dateList.add("23/06/2023  Friday");
+        dateList.add("24/06/2023  Saturday");
 
         System.out.println("\nSelect the date of the event:");
         for (int i = 0; i < dateList.size(); i++) {
             System.out.println((i + 1) + ". " + dateList.get(i));
         }
+
         System.out.print("\nEnter your selection: ");
         int selection = in.nextInt();
         while (selection < 1 || selection > dateList.size()) {
             System.out.println("Invalid selection. Please choose a valid option.");
             selection = in.nextInt();
         }
-        String selectedDate = dateList.get(selection - 1);
-        System.out.println("You selected: " + selectedDate + "\n");
-        return selectedDate;
-
+        return selection;
     }
 
     public static void selectEvent(String select, Scanner in) {
@@ -143,8 +146,38 @@ public class ProjectCode252 {
             return;
         }
 
+        int chooseDay = selectDate(in);
+        switch (chooseDay) {
+            case 1:
+                event.chosenDay(new Sunday());
+                break;
+            case 2:
+                event.chosenDay(new Monday());
+                break;
+            case 3:
+                event.chosenDay(new Tuesday());
+                break;
+            case 4:
+                event.chosenDay(new Wednesday());
+                break;
+            case 5:
+                event.chosenDay(new Thursday());
+                break;
+            case 6:
+                event.chosenDay(new Friday());
+                break;
+            case 7:
+                event.chosenDay(new Saturday());
+                break;
+        }
+        event.getDay();
+        
+        System.out.println("");
+        
         quaTemp = askQuantity(in);
         event.updateQuantity(quaTemp);
+        
+        System.out.println("");
 
     }
 
@@ -153,21 +186,51 @@ public class ProjectCode252 {
         return in.nextInt();
     }
 
-    public static void invoice(String userName) {
+    public static void calculatePrice() {
+        int itemTotal;
+        itemTotal = BQua * BPrice;
+        total += itemTotal;
+        itemTotal = PQua * PPrice;
+        total += itemTotal;
+        itemTotal = SQua * SPrice;
+        total += itemTotal;
+        itemTotal = GQua * GPrice;
+        total += itemTotal;
+        itemTotal = DQua * DPrice;
+        total += itemTotal;
+    }
 
-        InvoiceBuilder invoiceBuilder = new InvoiceBuilder();
-        InvoiceDirector invoiceDirector = new InvoiceDirector(invoiceBuilder);
-
-        invoiceDirector.constructInvoice(userName, new String[][]{
-            {"Bumper cars", Integer.toString(BQua), Double.toString(BQua * BPrice)},
-            {"Pirate Ship", Integer.toString(PQua), Double.toString(PQua * PPrice)},
-            {"Ice skating", Integer.toString(SQua), Double.toString(SQua * SPrice)},
-            {"Giant Wheel", Integer.toString(GQua), Double.toString(GQua * GPrice)},
-            {"Drop tower", Integer.toString(DQua), Double.toString(DQua * DPrice)}
-        });
-
-        Invoice invoice = invoiceBuilder.getInvoice();
-        System.out.println(invoice.toString());
+    public static String invoice(String userName) {
+        String invoicePrint = "";
+        invoicePrint += "\n\n****************** INVOICE ********************";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        invoicePrint += "\nDate: " + dtf.format(now);
+        invoicePrint += "\nBill to: " + userName + "\n";
+        invoicePrint += "\nItem              Quantity          Item Total";
+        if (BQua != 0) {
+            invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
+        }
+        if (PQua != 0) {
+            invoicePrint += "\nPirate Ship          " + PQua + "                 " + PQua * PPrice;
+        }
+        if (SQua != 0) {
+            invoicePrint += "\nIce skating          " + SQua + "                 " + SQua * SPrice;
+        }
+        if (GQua != 0) {
+            invoicePrint += "\nGiant Wheel          " + GQua + "                 " + GQua * GPrice;
+        }
+        if (DQua != 0) {
+            invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
+        }
+        invoicePrint += "\n\nSubtotal: " + total;
+        double tax = total * 0.15;
+        invoicePrint += "\nTax: " + tax;
+        double totalPrice = total + tax;
+        invoicePrint += "\nTotal Price: " + totalPrice;
+        invoicePrint += "\n***********************************************";
+        invoicePrint += "\n";
+        return invoicePrint;
     }
 
     public static String generateTicket(String date) {

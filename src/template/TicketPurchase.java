@@ -6,7 +6,7 @@
 package template;
 
 abstract class TicketBookingProcessTemplate {
-    
+
     public abstract void selectEvent();
 
     public abstract void makePayment();
@@ -25,6 +25,7 @@ abstract class TicketBookingProcessTemplate {
 
 //------------------------------------------------------------------------------
 class STLAWorldTicketSelection extends TicketBookingProcessTemplate {
+
     @Override
     public void selectEvent() {
         System.out.println("Select the event you want to book tickets for");
@@ -52,6 +53,7 @@ class STLAWorldTicketSelection extends TicketBookingProcessTemplate {
 //------------------------------------------------------------------------------
 
 class TemplateMethodPatternClient {
+
     public static void main(String[] args) {
         TicketBookingProcessTemplate ticketBookingProcess = new STLAWorldTicketSelection();
         ticketBookingProcess.bookTicket();

@@ -5,15 +5,30 @@
  */
 package Factory;
 
+import Bridge.Day;
 import MainCode.ProjectCode252;
 
 /**
  *
  * @author asmaabdullah
  */
-public class IceSkating implements Event {
+public class IceSkating extends Event {
 
-    private  final int IceSkating_Price = 30;
+    private final int IceSkating_Price = 30;
+
+    public IceSkating() {
+
+    }
+
+    @Override
+    public void chosenDay(Day day) {
+        this.day = day;
+    }
+
+    @Override
+    public void getDay() {
+        day.chosenDay();
+    }
 
     @Override
     public void updateQuantity(int quantity) {
@@ -27,4 +42,3 @@ public class IceSkating implements Event {
     }
 
 }
-
