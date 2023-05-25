@@ -28,6 +28,13 @@ import Bridge.Thursday;
 import Bridge.Friday;
 import Bridge.Saturday;
 
+// Decorater 
+import decorater.Ticket;
+import decorater.AppleWalletDecorator;
+import decorater.BasicTicket;
+import decorater.TicketDecorator;
+import decorater.User;
+
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
@@ -73,13 +80,35 @@ public class ProjectCode252 {
             System.out.print("Enter your Email: ");
             userEmail = in.next();
         }
-
-        calculatePrice();
-        //System.out.println(generateTicket(date));
-        System.out.println(invoice(userName));
-
+       
+        
+     boolean addToWallet = false;
+    System.out.print("Do you want to add the ticket to your wallet? (Y/N): ");
+    String addToWalletOption = input.next().toUpperCase();
+    if (addToWalletOption.equals("Y")) {
+        addToWallet = true;
     }
 
+    calculatePrice();
+    String invoice = invoice(userName);
+    System.out.println(invoice);
+
+    if (addToWallet) {
+        Ticket basicTicket = new BasicTicket();
+        User user = new User(basicTicket);
+        user.invoice();
+
+        Ticket ticketWithWallet = new AppleWalletDecorator(user);
+        ticketWithWallet.invoice();
+    }
+    
+
+    
+    }
+       
+    
+    
+    
     public static String displayWelcomeMessage() {
 
         String WelcomeMsg = "";
@@ -171,12 +200,12 @@ public class ProjectCode252 {
                 break;
         }
         event.getDay();
-        
+
         System.out.println("");
-        
+
         quaTemp = askQuantity(in);
         event.updateQuantity(quaTemp);
-        
+
         System.out.println("");
 
     }
@@ -200,51 +229,39 @@ public class ProjectCode252 {
         total += itemTotal;
     }
 
-    public static String invoice(String userName) {
-        String invoicePrint = "";
-        invoicePrint += "\n\n****************** INVOICE ********************";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        invoicePrint += "\nDate: " + dtf.format(now);
-        invoicePrint += "\nBill to: " + userName + "\n";
-        invoicePrint += "\nItem              Quantity          Item Total";
-        if (BQua != 0) {
-            invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
-        }
-        if (PQua != 0) {
-            invoicePrint += "\nPirate Ship          " + PQua + "                 " + PQua * PPrice;
-        }
-        if (SQua != 0) {
-            invoicePrint += "\nIce skating          " + SQua + "                 " + SQua * SPrice;
-        }
-        if (GQua != 0) {
-            invoicePrint += "\nGiant Wheel          " + GQua + "                 " + GQua * GPrice;
-        }
-        if (DQua != 0) {
-            invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
-        }
-        invoicePrint += "\n\nSubtotal: " + total;
-        double tax = total * 0.15;
-        invoicePrint += "\nTax: " + tax;
-        double totalPrice = total + tax;
-        invoicePrint += "\nTotal Price: " + totalPrice;
-        invoicePrint += "\n***********************************************";
-        invoicePrint += "\n";
-        return invoicePrint;
+  public static String invoice(String userName) {
+    String invoicePrint = "";
+    invoicePrint += "\n\n****************** INVOICE ********************";
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    invoicePrint += "\nDate: " + dtf.format(now);
+    invoicePrint += "\nBill to: " + userName + "\n";
+    invoicePrint += "\nItem              Quantity          Item Total";
+    if (BQua != 0) {
+        invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
     }
-
-    public static String generateTicket(String date) {
-        String ticket = "";
-        String dateNo = date.substring(0, 10);
-        String day = date.substring(10);
-
-        ticket += "\n\n\t\tSTLA WORLD\n";
-        ticket += "------------------TICKET---------------------\n";
-        ticket += " Date: " + dateNo + " | " + day;
-        ticket += "\n\t 4:00pm - 11:30pm";
-        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
-        ticket += "\n---------------------------------------------\n\n";
-        return ticket;
+    if (PQua != 0) {
+        invoicePrint += "\nPirate Ship          " + PQua + "                 " + PQua * PPrice;
     }
+    if (SQua != 0) {
+        invoicePrint += "\nIce skating          " + SQua + "                 " + SQua * SPrice;
+    }
+    if (GQua != 0) {
+        invoicePrint += "\nGiant Wheel          " + GQua + "                 " + GQua * GPrice;
+    }
+    if (DQua != 0) {
+        invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
+    }
+    invoicePrint += "\n\nSubtotal: " + total;
+    double tax = total * 0.15;
+    invoicePrint += "\nTax: " + tax;
+    double totalPrice = total + tax;
+    invoicePrint += "\nTotal Price: " + totalPrice;
+    invoicePrint += "\n***********************************************";
+    invoicePrint += "\n";
+    return invoicePrint;
+  }
 
 }
+  
+  
