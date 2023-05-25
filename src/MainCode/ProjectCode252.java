@@ -81,7 +81,10 @@ public class ProjectCode252 {
             userEmail = in.next();
         }
        
-        
+      calculatePrice();
+    String invoice = invoice(userName);
+    System.out.println(invoice);
+  
      boolean addToWallet = false;
     System.out.print("Do you want to add the ticket to your wallet? (Y/N): ");
     String addToWalletOption = input.next().toUpperCase();
@@ -89,10 +92,7 @@ public class ProjectCode252 {
         addToWallet = true;
     }
 
-    calculatePrice();
-    String invoice = invoice(userName);
-    System.out.println(invoice);
-
+    
     if (addToWallet) {
         Ticket basicTicket = new BasicTicket();
         User user = new User(basicTicket);
