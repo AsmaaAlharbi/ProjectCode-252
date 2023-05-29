@@ -38,8 +38,6 @@ import Decorator.FastPassTicket;
 import Decorator.BasicTicket;
 import Decorator.TicketDecorator;
 
-
-
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
@@ -193,6 +191,7 @@ public class ProjectCode252 {
 
     public static void Payment(Scanner in) {
         PaymentFactory paymentFactory = new PaymentFactory();
+        boolean flag = true;
 
         System.out.println("Payment Options:");
         System.out.println("1. Apple Pay");
@@ -201,12 +200,18 @@ public class ProjectCode252 {
         System.out.print("Choose a payment option: ");
         int option = input.nextInt();
 
-        Payment payment = paymentFactory.getPay(option);
-        if (payment != null) {
-            payment.Pay();
-        } else {
-            System.out.println("Invalid payment option selected.");
+        while (flag) {
+            Payment payment = paymentFactory.getPay(option);
+            if (payment != null) {
+                payment.Pay();
+                flag = false;
+            } else {
+                System.out.println("Wrong selection, please choose a valid option");
+                System.out.print("\nChoose a payment option: ");
+                option = input.nextInt();
+            }
         }
+
     }
 
     public static void selectEvent(String select, Scanner in) {
