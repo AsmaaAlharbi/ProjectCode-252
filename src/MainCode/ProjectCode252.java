@@ -38,6 +38,8 @@ import Decorator.FastPassTicket;
 import Decorator.BasicTicket;
 import Decorator.TicketDecorator;
 
+
+
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
@@ -83,7 +85,7 @@ public class ProjectCode252 {
             System.out.print("Enter your Email: ");
             userEmail = in.next();
         }
-        
+
         System.out.println("");
 
         // Prompt the user for Fast Pass Ticket choice
@@ -92,11 +94,11 @@ public class ProjectCode252 {
         boolean hasFastPass = fastPassChoice.equalsIgnoreCase("yes");
 
         calculatePrice(hasFastPass);
-        
+
         System.out.println("");
-        
+
         Payment(in);
-        
+
         System.out.println(invoice(userName, hasFastPass));
     }
 
