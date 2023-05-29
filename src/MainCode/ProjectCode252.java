@@ -28,6 +28,16 @@ import Bridge.Thursday;
 import Bridge.Friday;
 import Bridge.Saturday;
 
+// Strategy
+import Strategy.PaymentFactory;
+import Strategy.Payment;
+
+// Decorator
+import Decorator.Ticket;
+import Decorator.FastPassTicket;
+import Decorator.BasicTicket;
+import Decorator.TicketDecorator;
+
 public class ProjectCode252 {
 
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
@@ -73,11 +83,40 @@ public class ProjectCode252 {
             System.out.print("Enter your Email: ");
             userEmail = in.next();
         }
+        
+        System.out.println("");
 
-        calculatePrice();
-        //System.out.println(generateTicket(date));
-        System.out.println(invoice(userName));
+        // Prompt the user for Fast Pass Ticket choice
+        System.out.print("Do you want to add Fast Pass ticket? (yes/no): ");
+        String fastPassChoice = input.next();
+        boolean hasFastPass = fastPassChoice.equalsIgnoreCase("yes");
 
+        calculatePrice(hasFastPass);
+        
+        System.out.println("");
+        
+        Payment(in);
+        
+        System.out.println(invoice(userName, hasFastPass));
+    }
+
+    public static void calculatePrice(boolean hasFastPass) {
+        int itemTotal;
+        itemTotal = BQua * BPrice;
+        total += itemTotal;
+        itemTotal = PQua * PPrice;
+        total += itemTotal;
+        itemTotal = SQua * SPrice;
+        total += itemTotal;
+        itemTotal = GQua * GPrice;
+        total += itemTotal;
+        itemTotal = DQua * DPrice;
+        total += itemTotal;
+
+        // Adding Fast Pass Ticket feature
+        if (hasFastPass) {
+            total += 20; // Add 20 SR for the Fast Pass Ticket
+        }
     }
 
     public static String displayWelcomeMessage() {
@@ -136,6 +175,38 @@ public class ProjectCode252 {
         return selection;
     }
 
+    public static String generateTicket(String date) {
+        String ticket = "";
+        String dateNo = date.substring(0, 10);
+        String day = date.substring(10);
+
+        ticket += "\n\n\t\tSTLA WORLD\n";
+        ticket += "------------------TICKET---------------------\n";
+        ticket += " Date: " + dateNo + " | " + day;
+        ticket += "\n\t 4:00pm - 11:30pm";
+        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
+        ticket += "\n---------------------------------------------\n\n";
+        return ticket;
+    }
+
+    public static void Payment(Scanner in) {
+        PaymentFactory paymentFactory = new PaymentFactory();
+
+        System.out.println("Payment Options:");
+        System.out.println("1. Apple Pay");
+        System.out.println("2. Credit Card");
+        System.out.println("3. Visa");
+        System.out.print("Choose a payment option: ");
+        int option = input.nextInt();
+
+        Payment payment = paymentFactory.getPay(option);
+        if (payment != null) {
+            payment.Pay();
+        } else {
+            System.out.println("Invalid payment option selected.");
+        }
+    }
+
     public static void selectEvent(String select, Scanner in) {
         EventFactory eventFactory = new EventFactory();
         Event event = eventFactory.createEvent(select);
@@ -171,12 +242,12 @@ public class ProjectCode252 {
                 break;
         }
         event.getDay();
-        
+
         System.out.println("");
-        
+
         quaTemp = askQuantity(in);
         event.updateQuantity(quaTemp);
-        
+
         System.out.println("");
 
     }
@@ -186,21 +257,7 @@ public class ProjectCode252 {
         return in.nextInt();
     }
 
-    public static void calculatePrice() {
-        int itemTotal;
-        itemTotal = BQua * BPrice;
-        total += itemTotal;
-        itemTotal = PQua * PPrice;
-        total += itemTotal;
-        itemTotal = SQua * SPrice;
-        total += itemTotal;
-        itemTotal = GQua * GPrice;
-        total += itemTotal;
-        itemTotal = DQua * DPrice;
-        total += itemTotal;
-    }
-
-    public static String invoice(String userName) {
+    public static String invoice(String userName, boolean hasFastPass) {
         String invoicePrint = "";
         invoicePrint += "\n\n****************** INVOICE ********************";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -208,6 +265,7 @@ public class ProjectCode252 {
         invoicePrint += "\nDate: " + dtf.format(now);
         invoicePrint += "\nBill to: " + userName + "\n";
         invoicePrint += "\nItem              Quantity          Item Total";
+
         if (BQua != 0) {
             invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
         }
@@ -223,28 +281,15 @@ public class ProjectCode252 {
         if (DQua != 0) {
             invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
         }
-        invoicePrint += "\n\nSubtotal: " + total;
-        double tax = total * 0.15;
-        invoicePrint += "\nTax: " + tax;
-        double totalPrice = total + tax;
-        invoicePrint += "\nTotal Price: " + totalPrice;
-        invoicePrint += "\n***********************************************";
-        invoicePrint += "\n";
+
+        // Add Fast Pass ticket information if applicable
+        if (hasFastPass) {
+            invoicePrint += "\nFast Pass Ticket     1                 " + 20;
+        }
+
+        invoicePrint += "\n\nTotal: " + total + " SR";
+        invoicePrint += "\n****************************************************";
         return invoicePrint;
-    }
-
-    public static String generateTicket(String date) {
-        String ticket = "";
-        String dateNo = date.substring(0, 10);
-        String day = date.substring(10);
-
-        ticket += "\n\n\t\tSTLA WORLD\n";
-        ticket += "------------------TICKET---------------------\n";
-        ticket += " Date: " + dateNo + " | " + day;
-        ticket += "\n\t 4:00pm - 11:30pm";
-        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
-        ticket += "\n---------------------------------------------\n\n";
-        return ticket;
     }
 
 }
