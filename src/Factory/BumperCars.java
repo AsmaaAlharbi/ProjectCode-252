@@ -6,7 +6,7 @@
 package Factory;
 
 import Bridge.Day;
-import MainCode.ProjectCode252;
+import MainGUI.GUI_Main;
 
 /**
  *
@@ -31,8 +31,8 @@ public class BumperCars extends Event {
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.BQua += quantity;
-        ProjectCode252.B -= quantity;
+        GUI_Main.BQua += quantity;
+        GUI_Main.B -= quantity;
     }
 
     @Override

@@ -6,7 +6,7 @@
 package Factory;
 
 import Bridge.Day;
-import MainCode.ProjectCode252;
+import MainGUI.GUI_Main;
 
 /**
  *
@@ -32,8 +32,8 @@ public class PirateShip extends Event {
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.PQua += quantity;
-        ProjectCode252.P -= quantity;
+        GUI_Main.PQua += quantity;
+        GUI_Main.P -= quantity;
     }
 
     @Override

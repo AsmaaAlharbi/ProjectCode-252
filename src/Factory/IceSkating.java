@@ -6,7 +6,7 @@
 package Factory;
 
 import Bridge.Day;
-import MainCode.ProjectCode252;
+import MainGUI.GUI_Main;
 
 /**
  *
@@ -32,8 +32,8 @@ public class IceSkating extends Event {
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.SQua += quantity;
-        ProjectCode252.S -= quantity;
+        GUI_Main.SQua += quantity;
+        GUI_Main.S -= quantity;
     }
 
     @Override

@@ -6,7 +6,7 @@
 package Factory;
 
 import Bridge.Day;
-import MainCode.ProjectCode252;
+import MainGUI.GUI_Main;
 
 /**
  *
@@ -33,8 +33,8 @@ public class GiantWheel extends Event {
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.GQua += quantity;
-        ProjectCode252.G -= quantity;
+        GUI_Main.GQua += quantity;
+        GUI_Main.G -= quantity;
     }
 
     @Override

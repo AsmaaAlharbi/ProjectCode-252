@@ -8,22 +8,13 @@ public abstract class TicketDecorator implements Ticket {
 
     protected Ticket decoratedTicket;
 
-    public TicketDecorator(Ticket decoratedTicket) {
-        this.decoratedTicket = decoratedTicket;
+    public TicketDecorator(Ticket ticket) {
+        this.decoratedTicket = ticket;
     }
 
     @Override
-    public String getDescription() {
-        return decoratedTicket.getDescription();
+    public void generateTicket() {
+        decoratedTicket.generateTicket();
     }
 
-    @Override
-    public double getPrice() {
-        return decoratedTicket.getPrice();
-    }
-
-    @Override
-    public String getInvoice() {
-        return decoratedTicket.getInvoice();
-    }
 }

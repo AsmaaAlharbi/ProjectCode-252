@@ -6,8 +6,7 @@
 package Factory;
 
 import Bridge.Day;
-import MainCode.ProjectCode252;
-
+import MainGUI.GUI_Main;
 
 /**
  *
@@ -34,8 +33,8 @@ public class DropTower extends Event {
 
     @Override
     public void updateQuantity(int quantity) {
-        ProjectCode252.DQua += quantity;
-        ProjectCode252.Da -= quantity;
+        GUI_Main.DQua += quantity;
+        GUI_Main.Da -= quantity;
     }
 
     @Override
