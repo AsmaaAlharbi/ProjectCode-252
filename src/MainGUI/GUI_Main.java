@@ -134,12 +134,6 @@ public class GUI_Main extends javax.swing.JFrame {
             mobileNum = input.next();
         }
 
-        String userEmail = "";
-        while (!isCorrectEmail(userEmail)) {
-            System.out.print("Enter your Email: ");
-            userEmail = in.next();
-        }
-
         System.out.println("");
 
         boolean hasFastPass = FastPass();
@@ -208,13 +202,6 @@ public class GUI_Main extends javax.swing.JFrame {
 
     public static boolean isCorrectMobile(String mobileNum) {
         return mobileNum.startsWith("05") && mobileNum.length() == 10;
-    }
-
-    public static boolean isCorrectEmail(String userEmail) {
-        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(userEmail);
-        return matcher.matches();
     }
 
     public static int selectDate() {
