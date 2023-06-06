@@ -281,7 +281,7 @@ public class GUI_Main extends javax.swing.JFrame {
             } else if (option == 3) {
                 payment = new StrategyContext(new Visa());
             }
-            //Payment_Strategy payment = paymentFactory.getPay(option);
+            
             if (payment != null) {
                 payment.executePayment();
                 flag = false;
