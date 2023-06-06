@@ -10,9 +10,9 @@ package MainGUI;
  */
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 // Factory
 import Factory.EventFactory;
@@ -28,9 +28,11 @@ import Bridge.Friday;
 import Bridge.Saturday;
 
 // Strategy
-import Strategy.PaymentFactory;
-import Strategy.Payment;
-import javax.swing.JOptionPane;
+import Strategy.StrategyContext;
+import Strategy.Payment_Strategy;
+import Strategy.ApplePay;
+import Strategy.CreditCard;
+import Strategy.Visa;
 
 // Decorator
 import Decorator.Ticket;
@@ -258,7 +260,8 @@ public class GUI_Main extends javax.swing.JFrame {
     }
 
     public static void Payment() {
-        PaymentFactory paymentFactory = new PaymentFactory();
+
+        StrategyContext payment = null;
         boolean flag = true;
 
         System.out.println("\nPayment Options:");
@@ -269,9 +272,18 @@ public class GUI_Main extends javax.swing.JFrame {
         int option = input.nextInt();
 
         while (flag) {
-            Payment payment = paymentFactory.getPay(option);
+            if (option == 1) {
+                payment = new StrategyContext(new ApplePay());
+
+            } else if (option == 2) {
+                payment = new StrategyContext(new CreditCard());
+
+            } else if (option == 3) {
+                payment = new StrategyContext(new Visa());
+            }
+            //Payment_Strategy payment = paymentFactory.getPay(option);
             if (payment != null) {
-                payment.Pay();
+                payment.executePayment();
                 flag = false;
             } else {
                 System.out.println("Wrong selection, please choose a valid option");

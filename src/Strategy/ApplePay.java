@@ -4,7 +4,7 @@ package Strategy;
  *
  * @author DELL
  */
-public class ApplePay implements Payment {
+public class ApplePay implements Payment_Strategy {
 
     @Override
     public void Pay() {

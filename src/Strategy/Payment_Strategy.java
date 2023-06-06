@@ -4,6 +4,6 @@ package Strategy;
  *
  * @author DELL
  */
-public interface Payment {
+public interface Payment_Strategy {
     void Pay();
 }
